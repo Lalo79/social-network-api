@@ -42,6 +42,13 @@ userSchema
             return this.friends.length;    
     });
 
+userSchema
+    .virtual('ThoughtCount')
+    .get(
+        function () {
+            return this.thoughts.length;    
+    });
+
 
 // Initialize Model
 const User = model('user', userSchema);
