@@ -20,6 +20,10 @@ The app is prepared to make CRUD operations for both Users and Thoughts.
 ![Social Network Main](./utils/images/main.png)
 
 
+## Video
+[Walkthrough Code and Functionality](https://watch.screencastify.com/v/2rTi4FndqHS0R8og6m3D)  
+
+
 ## Installation    
     
   It is necesarry to install the dependencies required to use the app USING "npm install:
