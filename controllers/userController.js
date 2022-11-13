@@ -12,7 +12,7 @@ module.exports = {
       users.map((el) => {
         results.push({
             username: [{userId: el._id, username: el.username, email:el.email}],
-            friends: el.friends.map(ell => [{friendId: ell._id, friendName: ell.username}]),
+            friends: el.friends.map(ell => [{friendId: ell._id, friendName: ell.username, email: ell.email}]),
             thoughts: el.thoughts.map(elll => [{thoughtId: elll._id, thoughtText: elll.thoughtText}])
         })
     })
@@ -42,8 +42,8 @@ module.exports = {
             let results = [];
             
               results.push({
-                  username: [users.username, users._id],
-                  friends: users.friends.map(ell => [{friendId: ell._id, friendName: ell.username}]),
+                  username: [users.username, users._id, users.email],
+                  friends: users.friends.map(ell => [{friendId: ell._id, friendName: ell.username, email: ell.email}]),
                   thoughts: users.thoughts.map(elll => [{thoughtId: elll._id, thoughtText: elll.thoughtText}])
                 })
             

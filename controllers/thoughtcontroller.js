@@ -1,19 +1,22 @@
 const { json } = require('express');
 const { Thought, User } = require('../models');
+const { format_date, format_time } = require('../utils/helpers.js')
 
 module.exports = {
 
   getThoughts(req, res) {
+
+    console.log('>>> date formater ', format_date('2022-11-13T05:15:29.742Z'), '>>>>\n')
+
     Thought.find({})
     .populate('username')
-    // .populate({path: 'username', select: 'username', justOne: true,})
     .then((thoughts) => {
       let results = [];
       thoughts.map((el) => {
         results.push({
           _id: el._id,
           thoughtText: el.thoughtText,
-          createdAt: el.createdAt,
+          createdAt: format_date(el.createdAt),
           userId: el.username._id,
           username: el.username.username,
           reactions: el.reactions
@@ -39,7 +42,7 @@ module.exports = {
             { _id: req.body.username },
             { $addToSet: { thoughts: data._id } },
             { new: true }
-          ).then((userData) => console.log('>>>>>', userData, '<<<<<<\n'));
+          ).then((userData) => console.log(userData));
                     
           res.json(data)
         }) 
@@ -60,7 +63,7 @@ module.exports = {
               results.push({
                 _id: thoughts._id,
                 thoughtText: thoughts.thoughtText,
-                createdAt: thoughts.createdAt,
+                createdAt: format_date(thoughts.createdAt),
                 userId: thoughts.username._id,
                 username: thoughts.username.username,
                 reactions: thoughts.reactions
@@ -88,6 +91,7 @@ module.exports = {
            ).then((currUser) => {
 
             if (currUser) {
+              
 
               User.findOneAndUpdate(
                 { _id: req.body.username },
@@ -147,6 +151,8 @@ module.exports = {
   },
 
   addThoughtReaction(req, res) {
+
+    console.log('<<<< add Reaction: ', req.body, '>>>>\n')
   
     User.findOne(
       {_id: req.body.username}
