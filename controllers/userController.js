@@ -43,8 +43,8 @@ module.exports = {
             
               results.push({
                   username: [users.username, users._id],
-                  friends: users.friends.map(ell => ell.username),
-                  thoughts: users.thoughts.map(elll => elll.thoughtText)
+                  friends: users.friends.map(ell => [{friendId: ell._id, friendName: ell.username}]),
+                  thoughts: users.thoughts.map(elll => [{thoughtId: elll._id, thoughtText: elll.thoughtText}])
                 })
             
             res.json(results);
