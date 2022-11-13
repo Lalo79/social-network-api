@@ -23,11 +23,11 @@ router
     .delete(deleteThought);
 
 router
-    .route('/responses/:thoughtId')
+    .route('/reactions/:thoughtId')
     .post(addThoughtReaction);
 
 router
-    .route('/responses/:thoughtId/:reactionId')
+    .route('/reactions/:thoughtId/:reactionId')
     .delete(removeThoughtReaction);
 
 
